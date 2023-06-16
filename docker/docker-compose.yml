@@ -13,7 +13,7 @@ services:
       - ./policy.rego:/policy.rego
 
   database:
-    image: postgres:14.1-alpine
+    image: postgres:15.3-alpine
     ports:
       - "5432:5432"
     environment:
