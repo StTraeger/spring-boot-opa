@@ -11,8 +11,10 @@ services:
       - "--log-level=debug"
     volumes:
       - ./policy.rego:/policy.rego
+      - ./data.json:/data.json
 
   database:
+    container_name: database
     image: postgres:15.3-alpine
     ports:
       - "5432:5432"
@@ -20,3 +22,5 @@ services:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test1234
       - POSTGRES_DB=opa-db
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
