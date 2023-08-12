@@ -1,7 +1,7 @@
-package com.example.springbootopa.api;
+package de.sttraeger.springbootopa.api;
 
-import com.example.springbootopa.control.SalaryService;
-import com.example.springbootopa.entity.Salary;
+import de.sttraeger.springbootopa.control.SalaryService;
+import de.sttraeger.springbootopa.entity.Salary;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

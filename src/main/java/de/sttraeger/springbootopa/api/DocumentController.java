@@ -1,7 +1,7 @@
-package com.example.springbootopa.api;
+package de.sttraeger.springbootopa.api;
 
-import com.example.springbootopa.control.DocumentService;
-import com.example.springbootopa.entity.Document;
+import de.sttraeger.springbootopa.control.DocumentService;
+import de.sttraeger.springbootopa.entity.Document;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

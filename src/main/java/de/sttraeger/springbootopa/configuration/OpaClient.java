@@ -1,4 +1,4 @@
-package com.example.springbootopa.configuration;
+package de.sttraeger.springbootopa.configuration;
 
 import java.util.List;
 import java.util.Map;

@@ -19,12 +19,12 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-web:2.6.2")
     api("org.springframework.boot:spring-boot-starter-data-jpa:2.6.2")
     api("org.springdoc:springdoc-openapi-ui:1.7.0")
-    runtimeOnly("org.postgresql:postgresql:42.3.1")
+    runtimeOnly("org.postgresql:postgresql:42.3.8")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.2")
     testImplementation("org.springframework.security:spring-security-test:5.6.1")
 }
 
-group = "com.example"
+group = "de.sttraeger"
 version = "0.0.1-SNAPSHOT"
 description = "spring-boot-opa"
 java.sourceCompatibility = JavaVersion.VERSION_1_8

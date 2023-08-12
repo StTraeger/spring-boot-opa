@@ -1,4 +1,4 @@
-package com.example.springbootopa.configuration;
+package de.sttraeger.springbootopa.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

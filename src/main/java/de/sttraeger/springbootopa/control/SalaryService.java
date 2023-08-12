@@ -1,6 +1,6 @@
-package com.example.springbootopa.control;
+package de.sttraeger.springbootopa.control;
 
-import com.example.springbootopa.entity.Salary;
+import de.sttraeger.springbootopa.entity.Salary;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.springbootopa.configuration;
+package de.sttraeger.springbootopa.configuration;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;

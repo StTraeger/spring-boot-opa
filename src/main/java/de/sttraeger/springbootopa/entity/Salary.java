@@ -1,4 +1,4 @@
-package com.example.springbootopa.entity;
+package de.sttraeger.springbootopa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
