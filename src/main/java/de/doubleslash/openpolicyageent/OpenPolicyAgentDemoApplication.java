@@ -1,13 +1,13 @@
-package de.sttraeger.springbootopa;
+package de.doubleslash.openpolicyageent;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootOpaApplication {
+public class OpenPolicyAgentDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootOpaApplication.class, args);
+		SpringApplication.run(OpenPolicyAgentDemoApplication.class, args);
 	}
 
 }
