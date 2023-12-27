@@ -1,58 +1,26 @@
-CREATE TABLE IF NOT EXISTS salary
+CREATE TABLE IF NOT EXISTS beer
 (
     id
     SERIAL
     PRIMARY
     KEY,
-    username
-    varchar
-(
-    255
-),
-    amount int
+    brewery
+    varchar(255),
+    name
+    varchar(255),
+    alcohol
+    float,
+    amount
+    int
     );
 
-CREATE TABLE IF NOT EXISTS document
-(
-    id
-    SERIAL
-    PRIMARY
-    KEY,
-    content
-    varchar
-(
-    255
-),
-    owner varchar
-(
-    255
-)
-    );
+-- beer
+INSERT INTO beer (brewery, name, alcohol, amount)
+VALUES ('Wildbräu', 'Grandauer Festbier', 5.6, 10000);
+INSERT INTO beer (brewery, name, alcohol, amount)
+VALUES ('Brauhaus Tegernsee', 'Tegernseer Spezial', 5.6, 25000);
+INSERT INTO beer (brewery, name, alcohol, amount)
+VALUES ('Flötzinger', 'Flötzinger Hell', 5.2, 19500);
+INSERT INTO beer (brewery, name, alcohol, amount)
+VALUES ('Augustiner', 'Edelstoff', 5.6, 26300);
 
--- salaries
-INSERT INTO salary (username, amount)
-VALUES ('alice', 1000);
-INSERT INTO salary (username, amount)
-VALUES ('bob', 800);
-INSERT INTO salary (username, amount)
-VALUES ('carol', 600);
-INSERT INTO salary (username, amount)
-VALUES ('david', 500);
-INSERT INTO salary (username, amount)
-VALUES ('john', 900);
-
--- documents
-INSERT INTO document (content, owner)
-VALUES ('Alice Document 1', 'alice');
-INSERT INTO document (content, owner)
-VALUES ('Bob Document 1', 'bob');
-INSERT INTO document (content, owner)
-VALUES ('Bob Document 2', 'bob');
-INSERT INTO document (content, owner)
-VALUES ('David Document 1', 'david');
-INSERT INTO document (content, owner)
-VALUES ('David Document 2', 'david');
-INSERT INTO document (content, owner)
-VALUES ('Carol Document 1', 'carol');
-INSERT INTO document (content, owner)
-VALUES ('John Document 1', 'john');
