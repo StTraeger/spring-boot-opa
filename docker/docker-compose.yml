@@ -9,6 +9,6 @@ services:
     environment:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test1234
-      - POSTGRES_DB=beer-db
+      - POSTGRES_DB=beer_db
     volumes:
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql

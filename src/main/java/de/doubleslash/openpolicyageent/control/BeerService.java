@@ -18,5 +18,21 @@ public class BeerService {
         return repository.findByBrewery(brewery);
     }
 
+    public List<Beer> getAllBeers() {
+        return repository.findAll();
+    }
+
+    public Beer addBeer(final Beer beer) {
+        return repository.save(beer);
+    }
+
+    public void deleteBeer(final Long id) {
+        repository.deleteById(id);
+    }
+
+    public Beer updateBeer(final Beer beer) {
+        return repository.save(beer);
+    }
+
 
 }
