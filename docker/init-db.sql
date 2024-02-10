@@ -16,8 +16,6 @@ CREATE TABLE IF NOT EXISTS beer
 
 -- beer
 INSERT INTO beer (brewery, name, alcohol, amount)
-VALUES ('Wildbräu', 'Grandauer Festbier', 5.6, 10000);
-INSERT INTO beer (brewery, name, alcohol, amount)
 VALUES ('Brauhaus Tegernsee', 'Tegernseer Spezial', 5.6, 25000);
 INSERT INTO beer (brewery, name, alcohol, amount)
 VALUES ('Flötzinger', 'Flötzinger Hell', 5.2, 19500);

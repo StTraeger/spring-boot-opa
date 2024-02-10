@@ -22,6 +22,10 @@ public class BeerService {
         return repository.findAll();
     }
 
+    public Beer getBeerById(final long id) {
+        return repository.getReferenceById(id);
+    }
+
     public Beer addBeer(final Beer beer) {
         return repository.save(beer);
     }

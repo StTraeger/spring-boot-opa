@@ -52,6 +52,12 @@ public class BeerApi {
         return ResponseEntity.ok(service.getBeerForBrewery(brewery));
     }
 
+    @Operation(summary = "Get a beer by its id")
+    @GetMapping("/{id}")
+    public ResponseEntity<Beer> getBeerById(@PathVariable(value = "id") final long id) {
+        return ResponseEntity.ok(service.getBeerById(id));
+    }
+
     @Operation(summary = "Create and save a new beer")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Beer> addBeer(@RequestBody final Beer beer) {
