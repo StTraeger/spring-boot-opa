@@ -18,13 +18,13 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService users()  {
-        User.UserBuilder userBuilder = User.withDefaultPasswordEncoder();
-        UserDetails tegernseerUser = userBuilder
+        final User.UserBuilder userBuilder = User.withDefaultPasswordEncoder();
+        final UserDetails tegernseerUser = userBuilder
                 .username("tegernseer")
                 .password("test1234")
                 .roles("TEGERNSEER")
                 .build();
-        UserDetails augustinerUser = userBuilder
+        final UserDetails augustinerUser = userBuilder
                 .username("augustiner")
                 .password("test1234")
                 .roles("AUGUSTINER")
@@ -41,6 +41,7 @@ public class SecurityConfig {
                 authorizeRequests
                         .requestMatchers("/beers/tegernseer").hasRole("TEGERNSEER")
                         .requestMatchers("/beers/augustiner").hasRole("AUGUSTINER")
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/opa/**").permitAll()
                         .anyRequest().authenticated()
         );
 

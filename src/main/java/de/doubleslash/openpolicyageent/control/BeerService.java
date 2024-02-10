@@ -26,11 +26,13 @@ public class BeerService {
         return repository.save(beer);
     }
 
-    public void deleteBeer(final Long id) {
+    public void deleteBeer(final long id) {
         repository.deleteById(id);
     }
 
-    public Beer updateBeer(final Beer beer) {
+    public Beer updateBeer(final long id, final Beer beer) {
+        final Beer updateCandidate = repository.getReferenceById(id);
+
         return repository.save(beer);
     }
 

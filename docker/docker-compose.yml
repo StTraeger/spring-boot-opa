@@ -12,3 +12,11 @@ services:
       - POSTGRES_DB=beer_db
     volumes:
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  opa:
+    container_name: opa
+    image: openpolicyagent/opa:0.61.0
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./policy.rego:/policy/policy.rego
+    command: ["run", "--server", "--log-level", "debug", "/policy"]
