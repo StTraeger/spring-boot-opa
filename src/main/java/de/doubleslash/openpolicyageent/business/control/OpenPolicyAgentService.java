@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.control;
+package de.doubleslash.openpolicyageent.business.control;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import de.doubleslash.openpolicyageent.entity.OpaInput;
+import de.doubleslash.openpolicyageent.business.entity.OpaInput;
 
 @Service
 public class OpenPolicyAgentService {

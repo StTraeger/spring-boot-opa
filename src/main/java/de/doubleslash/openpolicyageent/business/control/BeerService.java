@@ -1,6 +1,6 @@
-package de.doubleslash.openpolicyageent.control;
+package de.doubleslash.openpolicyageent.business.control;
 
-import de.doubleslash.openpolicyageent.entity.BeerBE;
+import de.doubleslash.openpolicyageent.business.entity.BeerBE;
 
 import org.springframework.stereotype.Component;
 

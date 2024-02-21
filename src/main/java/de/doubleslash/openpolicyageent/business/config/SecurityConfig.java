@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.config;
+package de.doubleslash.openpolicyageent.business.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SecurityConfig {
         final User.UserBuilder userBuilder = User.withDefaultPasswordEncoder();
         final UserDetails adminUser = userBuilder
                 .username("admin")
-                .password("test1234")
+                .password("admin")
                 .roles("ADMIN")
                 .build();
         final UserDetails tegernseerUser = userBuilder

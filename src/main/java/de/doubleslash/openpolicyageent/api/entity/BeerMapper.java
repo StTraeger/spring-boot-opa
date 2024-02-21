@@ -2,7 +2,7 @@ package de.doubleslash.openpolicyageent.api.entity;
 
 import org.mapstruct.Mapper;
 
-import de.doubleslash.openpolicyageent.entity.BeerBE;
+import de.doubleslash.openpolicyageent.business.entity.BeerBE;
 
 @Mapper
 public interface BeerMapper {

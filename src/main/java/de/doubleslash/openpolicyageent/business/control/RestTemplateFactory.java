@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.control;
+package de.doubleslash.openpolicyageent.business.control;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
