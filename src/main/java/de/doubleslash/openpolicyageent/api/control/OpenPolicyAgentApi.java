@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.api;
+package de.doubleslash.openpolicyageent.api.control;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.doubleslash.openpolicyageent.control.OpenPolicyAgentService;
-import de.doubleslash.openpolicyageent.entity.OpaInput;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;

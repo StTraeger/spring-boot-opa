@@ -1,6 +1,7 @@
 package de.doubleslash.openpolicyageent.control;
 
-import de.doubleslash.openpolicyageent.entity.Beer;
+import de.doubleslash.openpolicyageent.entity.BeerBE;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,30 +15,30 @@ public class BeerService {
         this.repository = repository;
     }
 
-    public List<Beer> getBeerForBrewery(final String brewery) {
-        return repository.findByBrewery(brewery);
+    public List<BeerBE> getBeerForBrewery(final String brewery) {
+        return repository.findByBreweryIgnoringCase(brewery);
     }
 
-    public List<Beer> getAllBeers() {
+    public List<BeerBE> getAllBeers() {
         return repository.findAll();
     }
 
-    public Beer getBeerById(final long id) {
+    public BeerBE getBeerById(final long id) {
         return repository.getReferenceById(id);
     }
 
-    public Beer addBeer(final Beer beer) {
-        return repository.save(beer);
+    public BeerBE addBeer(final BeerBE beerBE) {
+        return repository.save(beerBE);
     }
 
     public void deleteBeer(final long id) {
         repository.deleteById(id);
     }
 
-    public Beer updateBeer(final long id, final Beer beer) {
-        final Beer updateCandidate = repository.getReferenceById(id);
+    public BeerBE updateBeer(final long id, final BeerBE beerBE) {
+        final BeerBE updateCandidate = repository.getReferenceById(id);
 
-        return repository.save(beer);
+        return repository.save(beerBE);
     }
 
 

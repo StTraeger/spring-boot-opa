@@ -3,12 +3,10 @@ package de.doubleslash.openpolicyageent.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.annotation.processing.Generated;
-
 @Data
 @Entity
 @Table(name = "beer")
-public class Beer {
+public class BeerBE {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,5 +14,4 @@ public class Beer {
     private String brewery;
     private String name;
     private double alcohol;
-    private long amount;
 }

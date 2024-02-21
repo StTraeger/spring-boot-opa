@@ -8,7 +8,7 @@ allow {
 }
 
 contains(path, user) {
-    startswith(path, "/beers/brewery/")
+    startswith(path, "/beers/")
     split_path := split(trim(path, "/"), "/")
-    user == split_path[2]
+    user == split_path[1]
 }

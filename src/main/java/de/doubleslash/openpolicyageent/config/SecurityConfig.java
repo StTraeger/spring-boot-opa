@@ -2,6 +2,7 @@ package de.doubleslash.openpolicyageent.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -46,12 +47,12 @@ public class SecurityConfig {
 
         security
                 .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                        .requestMatchers("/**").hasRole("ADMIN") // TODO: This request would be the in-service approach
-                        .requestMatchers("/beers/tegernseer/**").hasAnyRole("TEGERNSEER", "ADMIN") // TODO: This request would be the in-service approach
-                        .requestMatchers("/beers/augustiner/**").hasAnyRole("AUGUSTINER", "ADMIN") // TODO: This request would be the in-service approach
-                        .requestMatchers("/beers/floetzinger/**").hasAnyRole("FLOETZINGER", "ADMIN") // TODO: This request would be the in-service approach
+                        .requestMatchers("/brewerys/tegernseer/**").hasAnyRole("ADMIN", "TEGERNSEER")
+                        .requestMatchers("/brewerys/augustiner/**").hasAnyRole("ADMIN", "AUGUSTINER")
+                        .requestMatchers("/brewerys/floetzinger/**").hasAnyRole("ADMIN", "FLOETZINGER")
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/opa/**").permitAll()
                         .anyRequest().authenticated()
         );

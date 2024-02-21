@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS beer
+CREATE TABLE IF NOT EXISTS beerBE
 (
     id
     SERIAL
@@ -9,16 +9,14 @@ CREATE TABLE IF NOT EXISTS beer
     name
     varchar(255),
     alcohol
-    float,
-    amount
-    int
+    float
     );
 
--- beer
-INSERT INTO beer (brewery, name, alcohol, amount)
-VALUES ('Brauhaus Tegernsee', 'Tegernseer Spezial', 5.6, 25000);
-INSERT INTO beer (brewery, name, alcohol, amount)
-VALUES ('Flötzinger', 'Flötzinger Hell', 5.2, 19500);
-INSERT INTO beer (brewery, name, alcohol, amount)
-VALUES ('Augustiner', 'Edelstoff', 5.6, 26300);
+-- beerBE
+INSERT INTO beerBE (brewery, name, alcohol)
+VALUES ('Tegernseer', 'Tegernseer Spezial', 5.6);
+INSERT INTO beerBE (brewery, name, alcohol)
+VALUES ('Floetzinger', 'Flötzinger Hell', 5.2);
+INSERT INTO beerBE (brewery, name, alcohol)
+VALUES ('Augustiner', 'Edelstoff', 5.6);
 
