@@ -50,9 +50,9 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                        .requestMatchers("/brewerys/tegernseer/**").hasAnyRole("ADMIN", "TEGERNSEER")
-                        .requestMatchers("/brewerys/augustiner/**").hasAnyRole("ADMIN", "AUGUSTINER")
-                        .requestMatchers("/brewerys/floetzinger/**").hasAnyRole("ADMIN", "FLOETZINGER")
+                        .requestMatchers("/breweries/tegernseer/**").hasAnyRole("ADMIN", "TEGERNSEER")
+                        .requestMatchers("/breweries/augustiner/**").hasAnyRole("ADMIN", "AUGUSTINER")
+                        .requestMatchers("/breweries/floetzinger/**").hasAnyRole("ADMIN", "FLOETZINGER")
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/opa/**").permitAll()
                         .anyRequest().authenticated()
         );

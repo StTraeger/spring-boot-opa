@@ -1,22 +1,8 @@
-CREATE TABLE IF NOT EXISTS beerBE
+CREATE TABLE IF NOT EXISTS beerRequest
 (
-    id
-    SERIAL
-    PRIMARY
-    KEY,
-    brewery
-    varchar(255),
-    name
-    varchar(255),
-    alcohol
-    float
-    );
-
--- beerBE
-INSERT INTO beerBE (brewery, name, alcohol)
-VALUES ('Tegernseer', 'Tegernseer Spezial', 5.6);
-INSERT INTO beerBE (brewery, name, alcohol)
-VALUES ('Floetzinger', 'Flötzinger Hell', 5.2);
-INSERT INTO beerBE (brewery, name, alcohol)
-VALUES ('Augustiner', 'Edelstoff', 5.6);
-
+    id  uuid NOT NULL,
+    brewery varchar(255) NOT NULL,
+    "name"  varchar(255) NOT NULL,
+    alcohol float NOT NULL,
+    CONSTRAINT beer_pkey PRIMARY KEY (id)
+);

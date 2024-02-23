@@ -1,13 +1,16 @@
 package de.doubleslash.openpolicyageent.api.control;
 
-import de.doubleslash.openpolicyageent.api.entity.Beer;
+import de.doubleslash.openpolicyageent.api.entity.BeerRequest;
 import de.doubleslash.openpolicyageent.api.entity.BeerMapper;
 import de.doubleslash.openpolicyageent.api.entity.BeerMapperImpl;
+import de.doubleslash.openpolicyageent.api.entity.BeerResponse;
 import de.doubleslash.openpolicyageent.business.control.BeerService;
+import de.doubleslash.openpolicyageent.business.entity.BeerBE;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
@@ -23,9 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-@RequestMapping("/brewerys")
+@RequestMapping("/breweries")
 @RestController
 @OpenAPIDefinition(info = @Info(title = "Beer API", version = "1.0", description = "Beer API"))
 @SecurityScheme(
@@ -43,34 +47,65 @@ public class BeerApi {
         this.service = service;
     }
 
-
-    @Operation(summary = "Get all beers from a brewery")
-    @GetMapping("/{brewery}")
-    public ResponseEntity<List<Beer>> getAllBeers(@PathVariable(value = "brewery") final String brewery) {
+    @Operation(summary = "Get all beers from a brewery",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "List of beers"),
+        @ApiResponse(responseCode = "404", description = "Brewey not found")
+    })
+    @GetMapping("/{brewery}/beers")
+    public ResponseEntity<List<BeerResponse>> getAllBeers(@PathVariable(value = "brewery") final String brewery) {
 
         return ResponseEntity.ok(service.getBeerForBrewery(brewery)
                 .stream()
-                .map(mapper::toBeer)
+                .map(mapper::toResponse)
                 .collect(Collectors.toList()));
     }
 
-    @Operation(summary = "Create and save a new beer")
-    @PostMapping(value = "/{brewery}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Beer> addBeer(@PathVariable(value = "brewery") final String brewery, @RequestBody final Beer beer) {
-        return new ResponseEntity<>(mapper.toBeer(service.addBeer(mapper.toBeerBE(beer))), HttpStatus.CREATED);
+    @Operation(summary = "Get a specific beer by its id", responses = {
+        @ApiResponse(responseCode = "200", description = "Beer found"),
+        @ApiResponse(responseCode = "404", description = "Beer not found")
+    })
+    @GetMapping("/{brewery}/beers/{id}")
+    public ResponseEntity<BeerResponse> getBeerById(@PathVariable(value = "brewery") final String brewery,
+            @PathVariable(value = "id") final UUID id) {
+
+        final BeerBE beerById = service.getBeerById(brewery, id);
+
+        return ResponseEntity.ok(mapper.toResponse(beerById));
     }
 
+    @Operation(summary = "Create and save a new beer", responses = {
+        @ApiResponse(responseCode = "201", description = "Beer created"),
+        @ApiResponse(responseCode = "409", description = "Beer already exists"),
+        @ApiResponse(responseCode = "400", description = "Brewery does not match")
+    })
+    @PostMapping(value = "/{brewery}/beers", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<BeerResponse> addBeer(@PathVariable(value = "brewery") final String brewery,
+            @RequestBody final BeerRequest beerRequest) {
 
-    @Operation(summary = "Update an existing beer")
-    @PutMapping(path = "/{brewery}/{id}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Beer> updateBeer(@PathVariable(value = "brewery") final String brewery, @PathVariable("id") final long id, @RequestBody final Beer beer) {
-        return new ResponseEntity<>(mapper.toBeer(service.updateBeer(id, mapper.toBeerBE(beer))), HttpStatus.CREATED);
+        final BeerBE insertedBeer = service.addBeer(brewery, mapper.toBeerBE(beerRequest));
+
+        return new ResponseEntity<>(mapper.toResponse(insertedBeer), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Delete a beer by its id")
-    @DeleteMapping("/{brewery}/{id}")
-    public ResponseEntity<Void> deleteBeer(@PathVariable(value = "brewery") final String brewery, @PathVariable(value = "id") final long id) {
-        service.deleteBeer(id);
+    @Operation(summary = "Update an existing beer", responses = {
+        @ApiResponse(responseCode = "201", description = "Beer updated"),
+        @ApiResponse(responseCode = "404", description = "Beer not found")
+    })
+    @PutMapping(path = "/{brewery}/beers/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<BeerResponse> updateBeer(@PathVariable(value = "brewery") final String brewery,
+            @PathVariable("id") final UUID id, @RequestBody final BeerRequest beerRequest) {
+        return new ResponseEntity<>(mapper.toResponse(service.updateBeer(id, mapper.toBeerBE(beerRequest))), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Delete a beer by its id", responses = {
+        @ApiResponse(responseCode = "204", description = "Beer deleted"),
+        @ApiResponse(responseCode = "404", description = "Beer not found")
+    })
+    @DeleteMapping("/{brewery}/beers/{id}")
+    public ResponseEntity<Void> deleteBeer(@PathVariable(value = "brewery") final String brewery,
+            @PathVariable(value = "id") final UUID id) {
+        service.deleteBeer(brewery, id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

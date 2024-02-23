@@ -2,11 +2,8 @@ package de.doubleslash.openpolicyageent.api.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(name = "Beer", description = "Data object holding the beer data")
-public record Beer (
-
-    @Schema(description = "The id of the beer", example = "1")
-    long id,
+@Schema(name = "BeerRequest", description = "Data object holding the beer data to insert")
+public record BeerRequest(
     @Schema(description = "The brewery of the beer", example = "Brewery")
     String brewery,
     @Schema(description = "The name of the beer", example = "Beer")
