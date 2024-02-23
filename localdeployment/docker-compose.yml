@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  database:
+    container_name: database
+    image: postgres:15.5
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test1234
+      - POSTGRES_DB=beer_db
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  opa:
+    container_name: opa
+    image: openpolicyagent/opa:0.61.0
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./policy.rego:/policy/policy.rego
+    command: ["run", "--server", "--log-level", "debug", "/policy"]

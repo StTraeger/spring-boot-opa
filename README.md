@@ -1,12 +1,36 @@
-# Demo application with Spring Boot and Open Policy Agent
+# Open Policy Agent together with a Spring Boot API
 
-In this example you can see an example of how to use Open Policy Agent  (running as local Docker container) together 
-with Spring Security to secure the endpoint on `localhost:8080/demo/secured`.
+With this example we want to show you how easy you can integrate Open Policy Agent in your Spring Boot project. This demo projects consists of 2 APIs:
+- Beer API: The Beer API is the main API of this project. It is responsible for serving beerRequest data. The API is secured with OPA.
+- OPA API: The OPA API can be used to test statements directly against the OPA server. It is not secured with OPA.
 
-In the same Controller there is also another endpoint (`localhost:8080/demo/unsecured`). This endpoint is reachable
-without any authentication or authorization.
+## Endpoints
 
-## Configuration of Open Policy Agent (OPA)
+The following endpoints are available under /breverys/{brewery}:
+- GET /beers: Returns all beers of the brewery
+- GET /beers/{beerId}: Returns a specific beerRequest of the brewery
+- POST /beers: Creates a new beerRequest for the brewery
+- PUT /beers/{beerId}: Updates a specific beerRequest of the brewery
+- DELETE /beers/{beerId}: Deletes a specific beerRequest of the brewery
+## Local deployment
 
-The OPA server is configured via the `policy.rego` file in the docker directory. All users that are configured are 
-located in `users.json` also in the same directory.# Spring Boot OPA
+Within the localdeployment you can find a docker-compose file which can be used to start the project locally. The docker-compose file starts the following services:
+- Open Policy Agent with loaded policies
+- Postgres Database with the beerRequest data
+
+Just run the following command to start the docker-compose file:
+```bash 
+docker compose up
+```
+
+## User management
+
+To keep it simple, we have in-memory users. The following users are available (syntax: username:password):
+- tegernseer:test1234
+- augustiner:test1234
+- floetzinger:test1234
+- admin:admin
+
+Each brewery user can access its own data. The admin user can access all data.
+
+## Troubleshooting

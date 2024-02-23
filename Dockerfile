@@ -1,3 +1,3 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:21-jdk-alpine
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]
