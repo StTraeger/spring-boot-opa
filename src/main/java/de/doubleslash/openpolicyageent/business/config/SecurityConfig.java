@@ -1,7 +1,14 @@
 package de.doubleslash.openpolicyageent.business.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.access.AccessDecisionVoter;
+import org.springframework.security.access.vote.AuthenticatedVoter;
+import org.springframework.security.access.vote.RoleVoter;
+import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,8 +23,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final OpaAuthorizationManager authorizationManager;
+
+    public SecurityConfig(final OpaAuthorizationManager opaAuthorizationManager) {
+        this.authorizationManager = opaAuthorizationManager;
+    }
+
     @Bean
-    public UserDetailsService users()  {
+    public UserDetailsService users() {
         final User.UserBuilder userBuilder = User.withDefaultPasswordEncoder();
         final UserDetails adminUser = userBuilder
                 .username("admin")
@@ -49,17 +62,16 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests
-                        .requestMatchers("/breweries/tegernseer/**").hasAnyRole("ADMIN", "TEGERNSEER")
-                        .requestMatchers("/breweries/augustiner/**").hasAnyRole("ADMIN", "AUGUSTINER")
-                        .requestMatchers("/breweries/floetzinger/**").hasAnyRole("ADMIN", "FLOETZINGER")
-                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/opa/**").permitAll()
-                        .anyRequest().authenticated()
-        );
+                        authorizeRequests
+                                //.requestMatchers("/breweries/tegernseer/**").hasAnyRole("ADMIN", "TEGERNSEER")
+                                //        .requestMatchers("/breweries/augustiner/**").hasAnyRole("ADMIN", "AUGUSTINER")
+                                //        .requestMatchers("/breweries/floetzinger/**").hasAnyRole("ADMIN", "FLOETZINGER")
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/opa/**").permitAll()
+                                .requestMatchers("/breweries/**").access(authorizationManager)
+                                .anyRequest().authenticated()
+                );
 
         return security.build();
     }
-
-
 
 }

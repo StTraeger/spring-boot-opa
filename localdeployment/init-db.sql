@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS beerRequest
+CREATE TABLE IF NOT EXISTS beer
 (
     id  uuid NOT NULL,
     brewery varchar(255) NOT NULL,
