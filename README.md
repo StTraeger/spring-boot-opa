@@ -6,15 +6,16 @@ With this example we want to show you how easy you can integrate Open Policy Age
 
 ## Endpoints
 
-The following endpoints are available under /breverys/{brewery}:
+The following endpoints are available under /breweries/{brewery}:
 - GET /beers: Returns all beers of the brewery
 - GET /beers/{beerId}: Returns a specific beerRequest of the brewery
 - POST /beers: Creates a new beerRequest for the brewery
 - PUT /beers/{beerId}: Updates a specific beerRequest of the brewery
 - DELETE /beers/{beerId}: Deletes a specific beerRequest of the brewery
+
 ## Local deployment
 
-Within the localdeployment you can find a docker-compose file which can be used to start the project locally. The docker-compose file starts the following services:
+Within the localdeployment directory you find a docker-compose file which can be used to start the project locally. The docker-compose file starts the following services:
 - Open Policy Agent with loaded policies
 - Postgres Database with the beerRequest data
 

@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.config;
+package de.doubleslash.openpolicyageent.core.opa;
 
 import java.util.Map;
 import java.util.Objects;
@@ -21,8 +21,13 @@ import jakarta.servlet.http.HttpServletRequest;
 public class OpaAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
 
     private static final String URI = "http://localhost:8181/v1/data/httpapi/authz";
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper objectMapper;
+    private final RestTemplate restTemplate;
+
+    public OpaAuthorizationManager(final ObjectMapper objectMapper, final RestTemplate restTemplate) {
+        this.objectMapper = objectMapper;
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public AuthorizationDecision check(final Supplier<Authentication> authentication,

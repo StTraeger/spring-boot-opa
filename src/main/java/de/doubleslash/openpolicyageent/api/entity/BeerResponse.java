@@ -15,4 +15,6 @@ public record BeerResponse(
         String name,
         @Schema(description = "The alcohol content of the beer", example = "5.0")
         double alcohol
-) {}
+) {
+
+}

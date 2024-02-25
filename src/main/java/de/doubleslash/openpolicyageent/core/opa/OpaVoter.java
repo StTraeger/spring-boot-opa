@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.config;
+package de.doubleslash.openpolicyageent.core.opa;
 
 import java.util.Collection;
 import java.util.Map;
