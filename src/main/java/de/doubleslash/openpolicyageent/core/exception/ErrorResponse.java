@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.exception;
+package de.doubleslash.openpolicyageent.core.exception;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.entity;
+package de.doubleslash.openpolicyageent.core.entity;
 
 import lombok.Data;
 

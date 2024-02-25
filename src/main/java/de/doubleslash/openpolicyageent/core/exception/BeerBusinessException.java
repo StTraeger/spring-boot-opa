@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.exception;
+package de.doubleslash.openpolicyageent.core.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.exception;
+package de.doubleslash.openpolicyageent.core.exception;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum LogErrorId implements ErrorId {
 
-    BEER_ALREADY_EXISTS("BEER_01", "Duplicate beer entries are not allowed. Entry already exists with id."),
-    BEER_NOT_FOUND("BEER_02", "Beer not found."),
+    BEER_ALREADY_EXISTS("BEER_01", "Duplicate beer entries are not allowed. Entry already exists with id '%s'."),
+    BEER_NOT_FOUND("BEER_02", "Beer with id '%s' not found."),
 
     BREWERY_DOES_NOT_MATCH("BEER_03", "Brewery of user does not match brewery of the beer to insert.");
 

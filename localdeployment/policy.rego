@@ -3,6 +3,10 @@ package httpapi.authz
 default allow := false
 
 allow {
+    input.user == "admin"
+}
+
+allow {
     input.method == "GET"
     contains(input.path, input.user)
 }

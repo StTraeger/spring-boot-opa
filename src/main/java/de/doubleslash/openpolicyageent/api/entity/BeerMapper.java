@@ -1,16 +1,14 @@
 package de.doubleslash.openpolicyageent.api.entity;
 
-import java.util.List;
-
 import org.mapstruct.Mapper;
 
-import de.doubleslash.openpolicyageent.business.entity.BeerBE;
+import de.doubleslash.openpolicyageent.core.entity.BeerBE;
 
 @Mapper
 public interface BeerMapper {
 
     BeerResponse toResponse(final BeerBE beerBE);
 
-    BeerBE toBeerBE(final BeerRequest beerRequest);
+    BeerBE toBeerBE(final BeerRequest beerRequest, final String brewery);
 
 }

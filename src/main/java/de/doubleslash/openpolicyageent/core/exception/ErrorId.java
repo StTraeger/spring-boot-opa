@@ -1,4 +1,4 @@
-package de.doubleslash.openpolicyageent.business.exception;
+package de.doubleslash.openpolicyageent.core.exception;
 
 public interface ErrorId {
 
@@ -16,4 +16,5 @@ public interface ErrorId {
      * Get the error description and pass params to replacing the placeholder int the description.
      */
     String getDescription(final Object... params);
+
 }

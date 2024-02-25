@@ -5,14 +5,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.doubleslash.openpolicyageent.business.control.OpenPolicyAgentService;
+import de.doubleslash.openpolicyageent.core.control.OpenPolicyAgentService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-@OpenAPIDefinition(info = @Info(title = "Open Policy Agent API", version = "1.0", description = "Demo API for Open Policy Agent"))
+@OpenAPIDefinition(
+        info = @Info(title = "Open Policy Agent API", version = "1.0", description = "Demo API for Open Policy Agent"))
 @RestController
 public class OpenPolicyAgentApi {
 
@@ -29,4 +30,5 @@ public class OpenPolicyAgentApi {
     public ResponseEntity<String> checkPolicy(@RequestBody final String body) {
         return ResponseEntity.ok(service.checkCustomPolicy(body));
     }
+
 }

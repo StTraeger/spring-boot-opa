@@ -1,18 +1,18 @@
-package de.doubleslash.openpolicyageent.business.control;
-
-import de.doubleslash.openpolicyageent.business.entity.BeerBE;
-import de.doubleslash.openpolicyageent.business.exception.BeerBusinessException;
-import de.doubleslash.openpolicyageent.business.exception.LogErrorId;
-
-import org.springframework.data.domain.Example;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
+package de.doubleslash.openpolicyageent.core.control;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.springframework.data.domain.Example;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
+import de.doubleslash.openpolicyageent.core.entity.BeerBE;
+import de.doubleslash.openpolicyageent.core.exception.BeerBusinessException;
+import de.doubleslash.openpolicyageent.core.exception.LogErrorId;
 
 @Component
 public class BeerService {
@@ -38,7 +38,7 @@ public class BeerService {
         return searchResult.get();
     }
 
-    public BeerBE addBeer(final String brewery, final BeerBE beerBE) {
+    public BeerBE addBeer(final BeerBE beerBE) {
         final Example<BeerBE> example = Example.of(beerBE);
 
         repository.findOne(example)
@@ -47,11 +47,6 @@ public class BeerService {
                     throw new BeerBusinessException(LogErrorId.BEER_ALREADY_EXISTS,
                             HttpStatus.CONFLICT, searchResult.getId());
                 });
-
-        if (!beerBE.getBrewery().equalsIgnoreCase(brewery)) {
-            LOGGER.log(Level.SEVERE, "Brewery does not match");
-            throw new BeerBusinessException(LogErrorId.BREWERY_DOES_NOT_MATCH, HttpStatus.BAD_REQUEST);
-        }
 
         return repository.save(beerBE);
     }
@@ -85,6 +80,5 @@ public class BeerService {
 
         return repository.save(beerToUpdate);
     }
-
 
 }
