@@ -3,7 +3,7 @@ version: "3.8"
 services:
   database:
     container_name: database
-    image: postgres:15.5
+    image: postgres:16.2
     ports:
       - "5432:5432"
     environment:
@@ -14,9 +14,15 @@ services:
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
   opa:
     container_name: opa
-    image: openpolicyagent/opa:0.61.0
+    image: openpolicyagent/opa:0.63.0
     ports:
       - "8181:8181"
     volumes:
       - ./policy.rego:/policy/policy.rego
-    command: ["run", "--server", "--log-level", "debug", "/policy"]
+      - ./private.key:/private.key
+      - ./public.crt:/public.crt
+    command: ["run", "--server",
+              "--log-level", "debug",
+              "--tls-cert-file", "public.crt",
+              "--tls-private-key-file", "private.key",
+              "/policy"]

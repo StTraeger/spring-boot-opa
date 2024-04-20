@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Component
 public class OpaAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
 
-    private static final String URI = "http://localhost:8181/v1/data/httpapi/authz";
+    private static final String URI = "https://localhost:8181/v1/data/httpapi/authz";
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
 
